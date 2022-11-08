@@ -14,7 +14,7 @@ const validators = {
         flag: {
           valueMissing: true,
         },
-        message: 'Error: Required, please enter a username',
+        message: 'Error: Required, please enter a username.',
         condition: (input) => input.required && input.value.length <= 0,
       },
       {
@@ -28,6 +28,20 @@ const validators = {
   },
   password: {
     validations: [
+      {
+        flag: {
+          valueMissing: true,
+        },
+        message: 'Error: Required, please enter a password.',
+        condition: (input) => input.required && input.value.length <= 0,
+      },
+      {
+        flag: {
+          toShort: true,
+        },
+        message: 'Error: Minimum length not met, please supply a value with at least 8 characters.',
+        condition: (input) => input.minLength && input.value.length < input.minLength,
+      },
       {
         flag: {
           patternMismatch: true,
