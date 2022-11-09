@@ -33,10 +33,22 @@ if (window.FontAwesome) {
 
 const svg = icon?.node[0];
 
-export const Icon = Template.bind({});
+svg.setAttribute('aria-hidden', 'true');
+
+function IconTemplate ({ label, variant, svg }) {
+  return html`
+    <button class='${variant}' is='in-button' aria-labelledby="close-button-label">
+      <span id="close-button-label" hidden>${label}</span>
+      ${svg}
+    </button>
+  `;
+}
+
+export const Icon = IconTemplate.bind({});
 Icon.args = {
   variant: "icon icon-close",
-  label: svg,
+  label: 'Close',
+  svg,
 }
 
 function DisabledTemplate({ label, variant }) {
